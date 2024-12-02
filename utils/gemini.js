@@ -182,16 +182,18 @@ const functionDeclarations = [
 ];
 
 export async function startChat() {
-  const model = vertexAi.preview.getGenerativeModel({
+  const model = vertexAi.getGenerativeModel({
     model: "gemini-1.0-pro",
-    generation_config: { temperature: 0 },
+    generationConfig: {
+      temperature: 0,
+    },
+  });
+
+  model.startChat({
+    tools: functionDeclarations,
   });
 
   return model.startChat({
-    tools: [
-      {
-        functionDeclarations: functionDeclarations,
-      },
-    ],
+    tools: functionDeclarations,
   });
 }

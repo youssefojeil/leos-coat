@@ -211,13 +211,17 @@ export default function Home() {
           >
             SQL Talk with BigQuery
           </motion.h1>
-          <img src="/vertex-ai.png" alt="Vertex AI" className="h-12 w-12" />
+          <img
+            src="/images/leo-logo.png"
+            alt="Vertex AI"
+            className="h-12 w-12"
+          />
         </div>
 
         <h2 className="text-xl mb-4">Powered by Function Calling in Gemini</h2>
 
         {/* Sample Prompts */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="mb-8 p-4 bg-[#2D2D2D] rounded-lg border border-[#333333]"
@@ -234,7 +238,7 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </motion.div> */}
 
         {/* Chat Messages */}
         <div className="h-[600px] bg-[#2D2D2D] rounded-lg border border-[#333333] p-4 mb-4 overflow-y-auto">
@@ -274,6 +278,25 @@ export default function Home() {
             </div>
           )}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mb-8 p-4 bg-[#2D2D2D] rounded-lg border border-[#333333]"
+        >
+          <h3 className="font-semibold mb-2">Sample prompts</h3>
+          <ul className="space-y-2">
+            {samplePrompts.map((prompt, index) => (
+              <li
+                key={index}
+                className="text-gray-400 hover:text-[#FF8C69] cursor-pointer transition-colors"
+                onClick={() => setInput(prompt)}
+              >
+                {prompt}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
 
         {/* Input Form */}
         <form onSubmit={handleSubmit} className="flex gap-2">

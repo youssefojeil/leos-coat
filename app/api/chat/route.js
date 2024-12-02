@@ -174,12 +174,14 @@ export async function POST(request) {
         from BigQuery, do not make up information.
       `;
 
+    // console.log(`last message: ${lastMessage}`);
+
     // Send initial message and log detailed response
     const chatResponse = await chat.sendMessage(lastMessage);
 
     // Detailed logging of the chat response
     console.log("Full chat response:", JSON.stringify(chatResponse, null, 2));
-    console.log("Response type:", typeof chatResponse);
+    // console.log("Response type:", typeof chatResponse);
     console.log("Response keys:", Object.keys(chatResponse));
 
     if (chatResponse.candidates) {
