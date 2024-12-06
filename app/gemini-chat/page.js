@@ -1,16 +1,18 @@
-"use client";
+'use client';
 
-import React from "react";
-import { ChatMessage } from "@/components/chat-message";
-import { ChatInput } from "@/components/chat-input";
-import { QuickSuggestions } from "@/components/quick-suggestions";
-import { useChat } from "../hooks/useChat";
-import { Sparkle } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
-import LoadingSpinner from "@/components/loading-spinner";
+import React from 'react';
+import { ChatMessage } from '@/components/chat-message';
+import { ChatInput } from '@/components/chat-input';
+import { QuickSuggestions } from '@/components/quick-suggestions';
+import { useChat } from '../hooks/useChat';
+import { Sparkle } from '@phosphor-icons/react';
+import { motion } from 'framer-motion';
+import LoadingSpinner from '@/components/loading-spinner';
+
+// import ChatMessage from '@/components/chat-message';
 
 const ChatbotPage = () => {
-  const { messages, sendMessage, isClient } = useChat();
+  const { messages, sendMessage, isClient, isLoading } = useChat();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -28,7 +30,7 @@ const ChatbotPage = () => {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: 'spring',
         damping: 20,
       },
     },
@@ -58,7 +60,7 @@ const ChatbotPage = () => {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 500 }}
+            transition={{ type: 'spring', stiffness: 500 }}
             className="inline-flex items-center gap-2 mb-4"
           >
             <Sparkle weight="duotone" className="w-6 h-6 text-red-500" />
@@ -88,6 +90,7 @@ const ChatbotPage = () => {
                 timestamp={msg.timestamp}
               />
             ))}
+            {isLoading && <LoadingSpinner />}
           </motion.div>
           <QuickSuggestions onSelectSuggestion={handleSuggestionSelect} />
           <ChatInput onSendMessage={sendMessage} />

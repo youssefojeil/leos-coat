@@ -1,27 +1,23 @@
+// src/constants/suggestions.js
 export const quickSuggestions = [
   {
     id: 1,
-    text: "What can you help me with?",
-    category: "general",
+    text: 'What tables are in the database?',
   },
   {
     id: 2,
-    text: "How do I get started?",
-    category: "general",
+    text: 'Show me top relationship managers by portfolio value',
   },
   {
     id: 3,
-    text: "Tell me about your features",
-    category: "features",
+    text: 'Which products have the highest adoption rate?',
   },
   {
     id: 4,
-    text: "What's the meaning of life?",
-    category: "fun",
+    text: "What's the distribution of client segments?",
   },
   {
     id: 5,
-    text: "Can you write code?",
-    category: "technical",
+    text: 'Show recent transactions over $1M',
   },
 ];
