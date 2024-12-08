@@ -145,14 +145,6 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const samplePrompts = [
-    "What kind of information is in this database?",
-    "What percentage of orders are returned?",
-    "How is inventory distributed across our regional distribution centers?",
-    "Do customers typically place more than one order?",
-    "Which product categories have the highest profit margins?",
-  ];
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -220,26 +212,6 @@ export default function Home() {
 
         <h2 className="text-xl mb-4">Powered by Function Calling in Gemini</h2>
 
-        {/* Sample Prompts */}
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="mb-8 p-4 bg-[#2D2D2D] rounded-lg border border-[#333333]"
-        >
-          <h3 className="font-semibold mb-2">Sample prompts</h3>
-          <ul className="space-y-2">
-            {samplePrompts.map((prompt, index) => (
-              <li
-                key={index}
-                className="text-gray-400 hover:text-[#FF8C69] cursor-pointer transition-colors"
-                onClick={() => setInput(prompt)}
-              >
-                {prompt}
-              </li>
-            ))}
-          </ul>
-        </motion.div> */}
-
         {/* Chat Messages */}
         <div className="h-[600px] bg-[#2D2D2D] rounded-lg border border-[#333333] p-4 mb-4 overflow-y-auto">
           {messages.map((message, index) => (
@@ -279,7 +251,7 @@ export default function Home() {
           )}
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="mb-8 p-4 bg-[#2D2D2D] rounded-lg border border-[#333333]"
@@ -296,7 +268,7 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </motion.div> */}
 
         {/* Input Form */}
         <form onSubmit={handleSubmit} className="flex gap-2">

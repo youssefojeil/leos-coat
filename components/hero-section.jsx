@@ -84,7 +84,7 @@ export function HeroSectionWithBeamsAndGrid() {
           Our Services
         </Link>
       </div>
-      <div
+      {/* <div
         ref={containerRef}
         className="relative mx-auto max-w-7xl rounded-[32px] border border-neutral-200/50 bg-neutral-100 p-2 backdrop-blur-lg dark:border-neutral-700 dark:bg-neutral-800/50 md:p-4"
       >
@@ -97,12 +97,12 @@ export function HeroSectionWithBeamsAndGrid() {
             className="rounded-[20px]"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
 
-const BackgroundGrids = () => {
+export const BackgroundGrids = () => {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 grid h-full w-full -rotate-45 transform select-none grid-cols-2 gap-10 md:grid-cols-4">
       <div className="relative h-full w-full">
