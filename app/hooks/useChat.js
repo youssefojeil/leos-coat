@@ -80,15 +80,100 @@ export function useChat() {
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // useEffect(() => {
+  //   setIsClient(true);
+  //   setMessages([
+  //     {
+  //       id: '1',
+  //       message:
+  //         "Hello! I'm your banking AI assistant. How can I help you analyze the data?",
+  //       isBot: true,
+  //       timestamp: new Date().toLocaleTimeString(),
+  //     },
+  //   ]);
+  // }, []);
+
   useEffect(() => {
     setIsClient(true);
     setMessages([
       {
         id: '1',
         message:
-          "Hello! I'm your banking AI assistant. How can I help you analyze the data?",
+          "Hello! I'm your banking AI assistant. How can I help you analyze your financial data?",
         isBot: true,
-        timestamp: new Date().toLocaleTimeString(),
+        timestamp: '10:00 AM',
+      },
+      {
+        id: '2',
+        message:
+          'Can you help me understand my spending patterns for the last month?',
+        isBot: false,
+        timestamp: '10:01 AM',
+      },
+      {
+        id: '3',
+        message: 'Analyzing your monthly transactions...',
+        isBot: true,
+        timestamp: '10:01 AM',
+        isStep: true,
+        function: 'analyzeTransactions',
+        result: {
+          total: '$2,450',
+          categories: {
+            food: '$800',
+            transport: '$400',
+            utilities: '$350',
+          },
+        },
+      },
+      {
+        id: '4',
+        message:
+          'Based on your transaction history, your largest expense category was food ($800), followed by transportation ($400). I notice your utility bills ($350) were higher than usual this month. Would you like me to break down these categories further?',
+        isBot: true,
+        timestamp: '10:01 AM',
+        isFinal: true,
+      },
+      {
+        id: '5',
+        message: 'Yes, please break down my food expenses.',
+        isBot: false,
+        timestamp: '10:02 AM',
+      },
+      {
+        id: '6',
+        message: 'Categorizing food expenses...',
+        isBot: true,
+        timestamp: '10:02 AM',
+        isStep: true,
+        function: 'categorizeFoodExpenses',
+        result: {
+          restaurants: '$500',
+          groceries: '$250',
+          delivery: '$50',
+        },
+      },
+      {
+        id: '7',
+        message:
+          "Here's your food expense breakdown:\n- Restaurants: $500 (62.5%)\n- Groceries: $250 (31.25%)\n- Food delivery: $50 (6.25%)\n\nYou could save money by cooking more meals at home. Would you like some budget-friendly meal planning tips?",
+        isBot: true,
+        timestamp: '10:02 AM',
+        isFinal: true,
+      },
+      {
+        id: '8',
+        message: 'Can you check my savings rate?',
+        isBot: false,
+        timestamp: '10:03 AM',
+      },
+      {
+        id: '9',
+        message:
+          'Sorry, I encountered an error accessing your savings data. Please try again later or contact support.',
+        isBot: true,
+        timestamp: '10:03 AM',
+        error: true,
       },
     ]);
   }, []);

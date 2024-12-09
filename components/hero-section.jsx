@@ -1,10 +1,10 @@
-"use client";
-import React, { useRef, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import Balancer from "react-wrap-balancer";
-import Link from "next/link";
+'use client';
+import React, { useRef, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import Balancer from 'react-wrap-balancer';
+import Link from 'next/link';
 
 export function HeroSectionWithBeamsAndGrid() {
   const containerRef = useRef(null);
@@ -58,7 +58,7 @@ export function HeroSectionWithBeamsAndGrid() {
       />
       <h2 className="text-balance relative z-50 mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl">
         <Balancer>
-          Leo's Coat,{" "}
+          Leo's Coat,{' '}
           <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
             <div className="text-black [text-shadow:0_0_rgba(0,0,0,0.1)] dark:text-white">
               <span className="">Paint and Dry Wall Services</span>
@@ -102,24 +102,50 @@ export function HeroSectionWithBeamsAndGrid() {
   );
 }
 
+// export const BackgroundGrids = () => {
+//   return (
+//     <div className="pointer-events-none absolute inset-0 z-0 grid h-full w-full -rotate-45 transform select-none grid-cols-2 gap-10 md:grid-cols-4 overflow-hidden">
+//       <div className="relative h-full w-full">
+//         <GridLineVertical className="left-0" />
+//         <GridLineVertical className="left-auto right-0" />
+//       </div>
+//       <div className="relative h-full w-full">
+//         <GridLineVertical className="left-0" />
+//         <GridLineVertical className="left-auto right-0" />
+//       </div>
+//       {/* <div className="relative h-full w-full bg-gradient-to-b from-transparent via-neutral-100 to-transparent dark:via-neutral-800"> */}
+//       <div className="relative h-full w-full">
+//         <GridLineVertical className="left-0" />
+//         <GridLineVertical className="left-auto right-0" />
+//       </div>
+//       <div className="relative h-full w-full">
+//         <GridLineVertical className="left-0" />
+//         <GridLineVertical className="left-auto right-0" />
+//       </div>
+//     </div>
+//   );
+// };
+
 export const BackgroundGrids = () => {
   return (
-    <div className="pointer-events-none absolute inset-0 z-0 grid h-full w-full -rotate-45 transform select-none grid-cols-2 gap-10 md:grid-cols-4">
-      <div className="relative h-full w-full">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
-      </div>
-      <div className="relative h-full w-full">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
-      </div>
-      <div className="relative h-full w-full bg-gradient-to-b from-transparent via-neutral-100 to-transparent dark:via-neutral-800">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
-      </div>
-      <div className="relative h-full w-full">
-        <GridLineVertical className="left-0" />
-        <GridLineVertical className="left-auto right-0" />
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      <div className="grid h-full w-full -rotate-45 transform select-none grid-cols-2 gap-10 md:grid-cols-4">
+        <div className="relative h-full w-full">
+          <GridLineVertical className="left-0" />
+          <GridLineVertical className="left-auto right-0" />
+        </div>
+        <div className="relative h-full w-full">
+          <GridLineVertical className="left-0" />
+          <GridLineVertical className="left-auto right-0" />
+        </div>
+        <div className="relative h-full w-full">
+          <GridLineVertical className="left-0" />
+          <GridLineVertical className="left-auto right-0" />
+        </div>
+        <div className="relative h-full w-full">
+          <GridLineVertical className="left-0" />
+          <GridLineVertical className="left-auto right-0" />
+        </div>
       </div>
     </div>
   );
@@ -161,7 +187,7 @@ const CollisionMechanism = React.forwardRef(
             });
             setCycleCollisionDetected(true);
             if (beamRef.current) {
-              beamRef.current.style.opacity = "0";
+              beamRef.current.style.opacity = '0';
             }
           }
         }
@@ -179,7 +205,7 @@ const CollisionMechanism = React.forwardRef(
           setCycleCollisionDetected(false);
           // Set beam opacity to 0
           if (beamRef.current) {
-            beamRef.current.style.opacity = "1";
+            beamRef.current.style.opacity = '1';
           }
         }, 2000);
 
@@ -197,27 +223,27 @@ const CollisionMechanism = React.forwardRef(
           ref={beamRef}
           animate="animate"
           initial={{
-            translateY: beamOptions.initialY || "-200px",
-            translateX: beamOptions.initialX || "0px",
+            translateY: beamOptions.initialY || '-200px',
+            translateX: beamOptions.initialX || '0px',
             rotate: beamOptions.rotate || -45,
           }}
           variants={{
             animate: {
-              translateY: beamOptions.translateY || "800px",
-              translateX: beamOptions.translateX || "700px",
+              translateY: beamOptions.translateY || '800px',
+              translateX: beamOptions.translateX || '700px',
               rotate: beamOptions.rotate || -45,
             },
           }}
           transition={{
             duration: beamOptions.duration || 8,
             repeat: Infinity,
-            repeatType: "loop",
-            ease: "linear",
+            repeatType: 'loop',
+            ease: 'linear',
             delay: beamOptions.delay || 0,
             repeatDelay: beamOptions.repeatDelay || 0,
           }}
           className={cn(
-            "absolute left-96 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-orange-500 via-yellow-500 to-transparent",
+            'absolute left-96 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-orange-500 via-yellow-500 to-transparent',
             beamOptions.className
           )}
         />
@@ -229,7 +255,7 @@ const CollisionMechanism = React.forwardRef(
               style={{
                 left: `${collision.coordinates.x + 20}px`,
                 top: `${collision.coordinates.y}px`,
-                transform: "translate(-50%, -50%)",
+                transform: 'translate(-50%, -50%)',
               }}
             />
           )}
@@ -239,7 +265,7 @@ const CollisionMechanism = React.forwardRef(
   }
 );
 
-CollisionMechanism.displayName = "CollisionMechanism";
+CollisionMechanism.displayName = 'CollisionMechanism';
 
 const Explosion = ({ ...props }) => {
   const spans = Array.from({ length: 20 }, (_, index) => ({
@@ -251,12 +277,12 @@ const Explosion = ({ ...props }) => {
   }));
 
   return (
-    <div {...props} className={cn("absolute z-50 h-2 w-2", props.className)}>
+    <div {...props} className={cn('absolute z-50 h-2 w-2', props.className)}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 1, 0] }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 1, ease: 'easeOut' }}
         className="absolute -inset-x-10 top-0 m-auto h-[4px] w-10 rounded-full bg-gradient-to-r from-transparent via-orange-500 to-transparent blur-sm"
       ></motion.div>
       {spans.map((span) => (
@@ -268,7 +294,7 @@ const Explosion = ({ ...props }) => {
             y: span.directionY,
             opacity: 0,
           }}
-          transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
+          transition={{ duration: Math.random() * 1.5 + 0.5, ease: 'easeOut' }}
           className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-orange-500 to-yellow-500"
         />
       ))}
@@ -280,26 +306,26 @@ const GridLineVertical = ({ className, offset }) => {
   return (
     <div
       style={{
-        "--background": "#ffffff",
-        "--color": "rgba(0, 0, 0, 0.2)",
-        "--height": "5px",
-        "--width": "1px",
-        "--fade-stop": "90%",
+        '--background': '#ffffff',
+        '--color': 'rgba(0, 0, 0, 0.2)',
+        '--height': '5px',
+        '--width': '1px',
+        '--fade-stop': '90%',
 
         //-100px if you want to keep the line inside
-        "--offset": offset || "150px",
+        '--offset': offset || '150px',
 
-        "--color-dark": "rgba(255, 255, 255, 0.3)",
-        maskComposite: "exclude",
+        '--color-dark': 'rgba(255, 255, 255, 0.3)',
+        maskComposite: 'exclude',
       }}
       className={cn(
-        "absolute top-[calc(var(--offset)/2*-1)] h-[calc(100%+var(--offset))] w-[var(--width)]",
-        "bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)]",
-        "[background-size:var(--width)_var(--height)]",
-        "[mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-        "[mask-composite:exclude]",
-        "z-30",
-        "dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
+        'absolute top-[calc(var(--offset)/2*-1)] h-[calc(100%+var(--offset))] w-[var(--width)]',
+        'bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)]',
+        '[background-size:var(--width)_var(--height)]',
+        '[mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]',
+        '[mask-composite:exclude]',
+        'z-30',
+        'dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]',
         className
       )}
     ></div>

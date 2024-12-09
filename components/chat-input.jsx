@@ -1,17 +1,17 @@
-"use client";
-import React, { useState } from "react";
-import { PaperPlaneTilt } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
+'use client';
+import React, { useState } from 'react';
+import { PaperPlaneTilt } from '@phosphor-icons/react';
+import { motion } from 'framer-motion';
 
 export function ChatInput({ onSendMessage }) {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message.trim()) {
       onSendMessage(message);
-      setMessage("");
+      setMessage('');
     }
   };
 
@@ -26,11 +26,11 @@ export function ChatInput({ onSendMessage }) {
       <motion.div
         animate={{
           scale: isFocused ? 1.01 : 1,
-          boxShadow: isFocused ? "0 0 20px rgba(239, 68, 68, 0.2)" : "none",
+          boxShadow: isFocused ? '0 0 20px rgba(239, 68, 68, 0.2)' : 'none',
         }}
         transition={{ duration: 0.2 }}
       >
-        <input
+        {/* <input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -38,6 +38,15 @@ export function ChatInput({ onSendMessage }) {
           onBlur={() => setIsFocused(false)}
           placeholder="Type your message..."
           className="w-full px-6 py-4 bg-zinc-800/50 backdrop-blur-lg rounded-2xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 border border-red-900/20"
+        /> */}
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          placeholder="Type your message..."
+          className="w-full px-6 py-4 bg-zinc-100  rounded-2xl text-zinc-900 placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-500/50 border"
         />
       </motion.div>
       <motion.button
