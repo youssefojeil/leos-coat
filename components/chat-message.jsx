@@ -59,11 +59,13 @@ export function ChatMessage({
   isFinal,
 }) {
   return (
+    // bg-zinc-100  rounded-2xl text-zinc-900
     <motion.div
       className={`flex gap-4 ${isBot ? 'justify-start' : 'justify-end'} mr-2`}
     >
       {isBot && (
-        <motion.div className="w-8 h-8 flex-shrink-0 rounded-full bg-gradient-to-r from-zinc-700 to-zinc-600 flex items-center justify-center">
+        // <motion.div className="w-8 h-8 flex-shrink-0 rounded-full bg-gradient-to-r from-zinc-700 to-zinc-600 flex items-center justify-center">
+        <motion.div className="w-8 h-8 flex-shrink-0 rounded-full bg-gradient-to-r from-zinc-100 to-zinc-200 flex items-center justify-center">
           <Robot weight="duotone" className="w-5 h-5 text-white" />
         </motion.div>
       )}

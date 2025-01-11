@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Navbar } from '@/components/navbar';
 // import { Footer } from "@/components/footer";
 import { ThemeProvider } from '@/context/providers';
+import { SidebarDemo } from '@/components/sidebardemo';
 
 const inter = Inter({ subsets: ['latin'] });
 

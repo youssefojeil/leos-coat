@@ -76,6 +76,7 @@ import { useChat } from '../hooks/useChat';
 import { Sparkle } from '@phosphor-icons/react';
 import LoadingSpinner from '@/components/loading-spinner';
 import { BackgroundGrids } from '@/components/hero-section';
+import { SidebarDemo } from '@/components/sidebardemo';
 
 const ChatbotPage = () => {
   const { messages, sendMessage, isClient, isLoading } = useChat();
@@ -88,8 +89,9 @@ const ChatbotPage = () => {
   if (!isClient) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen bg-white">
-      <BackgroundGrids />
+    <div className="min-h-screen bg-white flex">
+      {/* <BackgroundGrids /> */}
+      <SidebarDemo />
 
       <div className="max-w-7xl mx-auto pt-20 pb-4 px-4 text-zinc-800">
         <div className="text-center mb-8">
