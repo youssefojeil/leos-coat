@@ -66,27 +66,29 @@
 
 // export default ChatbotPage;
 
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import { ChatMessage } from '@/components/chat-message';
-import { ChatInput } from '@/components/chat-input';
-import { QuickSuggestions } from '@/components/quick-suggestions';
-import { useChat } from '../hooks/useChat';
-import { Sparkle } from '@phosphor-icons/react';
-import LoadingSpinner from '@/components/loading-spinner';
-import { BackgroundGrids } from '@/components/hero-section';
-import { SidebarDemo } from '@/components/sidebardemo';
+import React, { useEffect, useRef } from "react";
+import { ChatMessage } from "@/components/chat-message";
+import { ChatInput } from "@/components/chat-input";
+import { QuickSuggestions } from "@/components/quick-suggestions";
+import { useChat } from "../hooks/useChat";
+import { Sparkle } from "@phosphor-icons/react";
+import LoadingSpinner from "@/components/loading-spinner";
+import { BackgroundGrids } from "@/components/hero-section";
+import { SidebarDemo } from "@/components/sidebardemo";
 
 const ChatbotPage = () => {
   const { messages, sendMessage, isClient, isLoading } = useChat();
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   if (!isClient) return <LoadingSpinner />;
+
+  console.log(messages);
 
   return (
     <div className="min-h-screen bg-white flex">

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import { ChatMessage } from '@/components/chat-message';
-import { ChatInput } from '@/components/chat-input';
-import { QuickSuggestions } from '@/components/quick-suggestions';
-import { useChat } from '@/app/hooks/useChat';
-import { Sparkle } from '@phosphor-icons/react';
-import LoadingSpinner from '@/components/loading-spinner';
-import { BackgroundGrids } from '@/components/hero-section';
-import { SidebarDemo } from '@/components/sidebardemo';
+import React, { useEffect, useRef, useState } from "react";
+import { ChatMessage } from "@/components/chat-message";
+import { ChatInput } from "@/components/chat-input";
+import { QuickSuggestions } from "@/components/quick-suggestions";
+import { useChat } from "@/app/hooks/useChat";
+import { Sparkle } from "@phosphor-icons/react";
+import LoadingSpinner from "@/components/loading-spinner";
+import { BackgroundGrids } from "@/components/hero-section";
+import { SidebarDemo } from "@/components/sidebardemo";
 
 const ChatSession = ({ params }) => {
   const { messages, sendMessage, isClient, isLoading, sessionLoading } =
@@ -17,11 +17,13 @@ const ChatSession = ({ params }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   // Show loading state while session is loading
   if (!isClient || sessionLoading) return <LoadingSpinner />;
+
+  console.log(messages);
 
   // 4. Main render
   return (

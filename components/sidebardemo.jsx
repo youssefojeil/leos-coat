@@ -1,6 +1,6 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { Sidebar, SidebarBody, SidebarLink } from '@/components/ui/sidebar';
+"use client";
+import React, { useState, useEffect } from "react";
+import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import {
   IconArrowLeft,
   IconBrandTabler,
@@ -8,38 +8,38 @@ import {
   IconUserBolt,
   IconMessage,
   IconPlus,
-} from '@tabler/icons-react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
+} from "@tabler/icons-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export function SidebarDemo() {
   const links = [
     {
-      label: 'Dashboard',
-      href: '#',
+      label: "Dashboard",
+      href: "#",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: 'Profile',
-      href: '#',
+      label: "Profile",
+      href: "#",
       icon: (
         <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: 'Settings',
-      href: '#',
+      label: "Settings",
+      href: "#",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: 'Logout',
-      href: '#',
+      label: "Logout",
+      href: "#",
       icon: (
         <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -55,13 +55,13 @@ export function SidebarDemo() {
 
   const fetchChatSessions = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/sessions');
-      if (!response.ok) throw new Error('Failed to fetch sessions');
+      const response = await fetch("http://localhost:8000/api/sessions");
+      if (!response.ok) throw new Error("Failed to fetch sessions");
       const data = await response.json();
       console.log(data);
       setSessions(data);
     } catch (error) {
-      console.error('Error fetching chat sessions:', error);
+      console.error("Error fetching chat sessions:", error);
     } finally {
       setLoading(false);
     }
@@ -70,8 +70,8 @@ export function SidebarDemo() {
   return (
     <div
       className={cn(
-        'rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-[200px] border border-neutral-200 dark:border-neutral-700 overflow-hidden z-50',
-        'h-screen'
+        "rounded-md flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1 max-w-[200px] border border-neutral-200 dark:border-neutral-700 overflow-hidden z-50 fixed",
+        "h-screen"
       )}
     >
       <Sidebar open={open} setOpen={setOpen} animate={false}>
@@ -99,9 +99,9 @@ export function SidebarDemo() {
                       key={session.session_id}
                       href={`/gemini-chat/${session.session_id}`}
                       className={cn(
-                        'flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200',
-                        'hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg mx-2 transition-colors',
-                        'cursor-pointer'
+                        "flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200",
+                        "hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg mx-2 transition-colors",
+                        "cursor-pointer"
                       )}
                     >
                       <span className="truncate">
@@ -114,11 +114,11 @@ export function SidebarDemo() {
 
               {/* New Chat Button */}
               <Link
-                href="/chat/new"
+                href="/gemini-chat"
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 mt-2 text-sm',
-                  'text-blue-600 dark:text-blue-400 hover:bg-neutral-200 dark:hover:bg-neutral-700',
-                  'rounded-lg mx-2 transition-colors cursor-pointer'
+                  "flex items-center gap-2 px-4 py-2 mt-2 text-sm",
+                  "text-blue-600 dark:text-blue-400 hover:bg-neutral-200 dark:hover:bg-neutral-700",
+                  "rounded-lg mx-2 transition-colors cursor-pointer"
                 )}
               >
                 <IconPlus className="h-4 w-4" />
@@ -138,8 +138,8 @@ export function SidebarDemo() {
           <div>
             <SidebarLink
               link={{
-                label: 'Manu Arora',
-                href: '#',
+                label: "Manu Arora",
+                href: "#",
                 icon: (
                   <Image
                     src="/leos-coat/public/images/leo-logo.jpg"

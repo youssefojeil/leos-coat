@@ -232,6 +232,17 @@ export function useChat(sessionId = null) {
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
+      if (error.response?.status == 500) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: (Date.now() + 1).toString(),
+            message: `Error: Something went wrong!`,
+            isBot: true,
+            timestamp: new Date().toLocaleTimeString(),
+          },
+        ]);
+      }
       setMessages((prev) => [
         ...prev,
         {
