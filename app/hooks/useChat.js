@@ -77,27 +77,27 @@
 //   return { messages, setMessages, sendMessage, isClient, isLoading };
 // }
 
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useChat(sessionId = null) {
   const [messages, setMessages] = useState([]);
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [sessionLoading, setSessionLoading] = useState(!!sessionId);
-  const [sessionTitle, setSessionTitle] = useState('');
+  const [sessionTitle, setSessionTitle] = useState("");
 
   useEffect(() => {
     setIsClient(true);
 
-    if (sessionId && sessionId !== 'new') {
+    if (sessionId && sessionId !== "new") {
       loadSessionMessages(sessionId);
     } else {
       // Default welcome message for new chats
       setMessages([
         {
-          id: '1',
+          id: "1",
           message:
             "Hello! I'm your banking AI assistant. How can I help you analyze the data?",
           isBot: true,
@@ -111,7 +111,7 @@ export function useChat(sessionId = null) {
     setSessionLoading(true);
     try {
       const response = await fetch(`http://localhost:8000/api/sessions/${sid}`);
-      if (!response.ok) throw new Error('Failed to load session messages');
+      if (!response.ok) throw new Error("Failed to load session messages");
 
       const sessionData = await response.json();
       setSessionTitle(sessionData.title);
@@ -121,20 +121,20 @@ export function useChat(sessionId = null) {
         const formattedMessages = sessionData.history.map((msg, index) => ({
           id: `${sessionData.session_id}-${index}`,
           message: msg.content,
-          isBot: msg.role === 'assistant',
+          isBot: msg.role === "assistant",
           timestamp: new Date(
-            sessionData.timestamp.replace('_', 'T')
+            sessionData.timestamp.replace("_", "T")
           ).toLocaleTimeString(),
           steps: msg.steps || [],
         }));
         setMessages(formattedMessages);
       }
     } catch (error) {
-      console.error('Error loading session messages:', error);
+      console.error("Error loading session messages:", error);
       setMessages([
         {
           id: Date.now().toString(),
-          message: 'Error loading chat history. Please try again.',
+          message: "Error loading chat history. Please try again.",
           isBot: true,
           timestamp: new Date().toLocaleTimeString(),
         },
@@ -143,6 +143,54 @@ export function useChat(sessionId = null) {
       setSessionLoading(false);
     }
   };
+
+  // const sendMessage = async (message) => {
+  //   console.log({ sessionId });
+
+  //   const userMessage = {
+  //     id: Date.now().toString(),
+  //     message,
+  //     isBot: false,
+  //     timestamp: new Date().toLocaleTimeString(),
+  //   };
+
+  //   setMessages((prev) => [...prev, userMessage]);
+  //   setIsLoading(true);
+
+  //   try {
+  //     const response = await fetch("http://localhost:8000/api/chat", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         messages: [{ role: "user", content: message }],
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+
+  //     const botMessage = {
+  //       id: (Date.now() + 1).toString(),
+  //       message: data.content,
+  //       isBot: true,
+  //       timestamp: new Date().toLocaleTimeString(),
+  //       steps: data.steps,
+  //     };
+
+  //     setMessages((prev) => [...prev, botMessage]);
+  //   } catch (error) {
+  //     setMessages((prev) => [
+  //       ...prev,
+  //       {
+  //         id: (Date.now() + 1).toString(),
+  //         message: `Error: ${error.message}`,
+  //         isBot: true,
+  //         timestamp: new Date().toLocaleTimeString(),
+  //       },
+  //     ]);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   const sendMessage = async (message) => {
     const userMessage = {
@@ -156,12 +204,20 @@ export function useChat(sessionId = null) {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: [{ role: 'user', content: message }],
-        }),
+      // Determine the API endpoint based on whether we have a sessionId
+      const apiUrl =
+        sessionId && sessionId !== "new"
+          ? `http://localhost:8000/api/chat/${sessionId}`
+          : "http://localhost:8000/api/chat";
+
+      const requestBody = {
+        messages: [{ role: "user", content: message }],
+      };
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json();
@@ -176,6 +232,17 @@ export function useChat(sessionId = null) {
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
+      if (error.response?.status == 500) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: (Date.now() + 1).toString(),
+            message: `Error: Something went wrong!`,
+            isBot: true,
+            timestamp: new Date().toLocaleTimeString(),
+          },
+        ]);
+      }
       setMessages((prev) => [
         ...prev,
         {
